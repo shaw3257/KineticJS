@@ -386,7 +386,7 @@ var Kinetic = {};
             var jsdom = require('jsdom').jsdom;
 
             Kinetic.document = jsdom('<!DOCTYPE html><html><head></head><body></body></html>');
-            Kinetic.window = Kinetic.document.createWindow();
+            Kinetic.window = Kinetic.document.defaultView;
             Kinetic.window.Image = Canvas.Image;
             Kinetic._nodeCanvas = Canvas;
         }
