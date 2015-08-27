@@ -4,7 +4,7 @@
  * http://www.kineticjs.com/
  * Copyright 2013, Eric Rowell
  * Licensed under the MIT or GPL Version 2 licenses.
- * Date: 2014-10-03
+ * Date: 2015-08-27
  *
  * Copyright (C) 2011 - 2013 by Eric Rowell
  *
@@ -603,7 +603,7 @@ var Kinetic = {};
             var jsdom = require('jsdom').jsdom;
 
             Kinetic.document = jsdom('<!DOCTYPE html><html><head></head><body></body></html>');
-            Kinetic.window = Kinetic.document.createWindow();
+            Kinetic.window = Kinetic.document.defaultView;
             Kinetic.window.Image = Canvas.Image;
             Kinetic._nodeCanvas = Canvas;
         }
@@ -3794,7 +3794,7 @@ var Kinetic = {};
     });
 
     /**
-     * create node with JSON string.  De-serializtion does not generate custom
+     * create node with JSON string.  De-serialization does not generate custom
      *  shape drawing functions, images, or event handlers (this would make the
      *  serialized object huge).  If your app uses custom shapes, images, and
      *  event handlers (it probably does), then you need to select the appropriate
@@ -7477,6 +7477,9 @@ var Kinetic = {};
             }
 
             return Kinetic.Collection.toCollection(retArr);
+        },
+        findOne: function(selector) {
+            return this.find(selector)[0];
         },
         _getNodeById: function(key) {
             var node = Kinetic.ids[key];
